@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.admin.quran.MainActivity"
-    android:background="@drawable/bg">
+    android:background="@drawable/bg"
+    tools:context="com.example.admin.quran.FavoriteActivity">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1faa00">
+        android:background="#1faa00"
+        android:gravity="center">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,15 +19,11 @@
             android:textSize="18sp"
             android:padding="5dp"
             android:fontFamily="@font/calligraphy_pen"
-            android:textDirection="anyRtl"
-            />
+            android:textDirection="anyRtl" />
     </android.support.v7.widget.Toolbar>
-
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/surahlist"
-        />
-
-
+        android:id="@+id/favlist"
+        android:padding="@dimen/fab_margin"/>
 </LinearLayout>
