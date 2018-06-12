@@ -33,5 +33,7 @@ public class FavoriteActivity extends AppCompatActivity {
         adapter =new SurahAdapter(datalist,this);
         recyclerView.setAdapter(adapter);
 
+        git pull origin master
+
     }
 }
