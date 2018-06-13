@@ -61,11 +61,13 @@ public class PlayerActivity extends AppCompatActivity {
         seekBar.setMax(mediaPlayer.getDuration());
 
         isfromfavorite = sql_lite_db.get_check_List_Favorite(datalist.get(currentAyah).getName());
+
         if(isfromfavorite>0){
             favorite.setImageResource(R.drawable.favorite1);
         }else {
             favorite.setImageResource(R.drawable.favorite);
         }
+
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +105,13 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
 
+
+        if(isreplay){
+            replay.setImageResource(R.drawable.replay);
+        }else {
+            replay.setImageResource(R.drawable.replay1);
+        }
+
         playSong(currentAyah);
 
         replay.setOnClickListener(new View.OnClickListener() {
@@ -110,10 +119,10 @@ public class PlayerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isreplay){
                     isreplay= false;
-                    replay.setImageResource(R.drawable.replay1);
+                    replay.setImageResource(R.drawable.replay);
                 }else {
                     isreplay= true;
-                    replay.setImageResource(R.drawable.replay);
+                    replay.setImageResource(R.drawable.replay1);
                 }
 
             }
