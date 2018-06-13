@@ -32,6 +32,9 @@ public class PlayerActivity extends AppCompatActivity {
     TextView lenghtTime;
     Thread thread;
     boolean isreplay = false;
+    int isfromfavorite;
+    ImageView favorite;
+    SQL_Lite_DB sql_lite_db;
 
 
     @Override
@@ -39,7 +42,7 @@ public class PlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
-
+        sql_lite_db = new SQL_Lite_DB(this);
         bundle= getIntent().getExtras();
         currentAyah =bundle.getInt("index");
         mediaPlayer = new MediaPlayer();
@@ -53,8 +56,32 @@ public class PlayerActivity extends AppCompatActivity {
         currentTime = (TextView) findViewById(R.id.currenttime);
         lenghtTime = (TextView) findViewById(R.id.lenghttime);
         replay = (ImageView) findViewById(R.id.replaysurah);
+        favorite = (ImageView) findViewById(R.id.favoritesurah);
 
         seekBar.setMax(mediaPlayer.getDuration());
+
+        isfromfavorite = sql_lite_db.get_check_List_Favorite(datalist.get(currentAyah).getName());
+        if(isfromfavorite>0){
+            favorite.setImageResource(R.drawable.favorite1);
+        }else {
+            favorite.setImageResource(R.drawable.favorite);
+        }
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isfromfavorite>0){
+                    sql_lite_db.deleteData(datalist.get(currentAyah).getName());
+                    favorite.setImageResource(R.drawable.favorite);
+                }
+                else {
+                    sql_lite_db.insert_Data(datalist.get(currentAyah).getName(),datalist.get(currentAyah).getFilename(),
+                            datalist.get(currentAyah).getUrl(),datalist.get(currentAyah).getStand());
+                    favorite.setImageResource(R.drawable.favorite1);
+                }
+            }
+        });
+
+
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

@@ -23,6 +23,7 @@ public class FavoriteActivity extends AppCompatActivity {
         sql_lite_db =new SQL_Lite_DB(this);
         sqLiteDatabase=sql_lite_db.getWritableDatabase();
 
+
         datalist.clear();
         datalist =sql_lite_db.readDataList();
 
@@ -33,7 +34,6 @@ public class FavoriteActivity extends AppCompatActivity {
         adapter =new SurahAdapter(datalist,this);
         recyclerView.setAdapter(adapter);
 
-        git pull origin master
 
     }
 }
